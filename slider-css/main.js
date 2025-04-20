@@ -15,21 +15,19 @@ const handleClick = (ev) => {
 	previousSlide();
 };
 
-const changeLogo = () => {
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const changeLogo = async () => {
 	const logo = document.querySelector('.logo');
 	const logoImg = logo.getElementsByTagName('img')[0];
-	console.log(logoImg);
+
 	logo.style.transform = 'translateY(-164px)';
 
-	const logoPath = logoImg.src.split('/')[3];
-	setTimeout(() => {
-		logoImg.src = `${logoPath}/test-logo.png`;
-	}, 400);
+	await sleep(400);
+	logoImg.src = `images/test-logo.png`;
 
-	setTimeout(() => {
-		logo.style.transform = '';
-	}, 800);
-	// translateY(-124px)
+	await sleep(800);
+	logo.style.transform = '';
 };
 
 const nextSlide = () => {
