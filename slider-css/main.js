@@ -33,19 +33,19 @@ const changeLogo = async () => {
 	logo.style.transform = '';
 };
 
-const BOOTS_START_DISTANCE = '-800px';
-const BOOTS_END_DISTANCE = '800px';
+const BOOTS_ENTRY_POSITION = '-800px';
+const BOOTS_EXIT_POSITION = '800px';
 
 const changeBoots = async () => {
 	const bootsImg = document.querySelector('.boots img');
 	if (!bootsImg) throw new Error('Boots not found');
 
-	bootsImg.style.transform = `translateX(${BOOTS_END_DISTANCE})`;
+	bootsImg.style.transform = `translateX(${BOOTS_EXIT_POSITION})`;
 
-	// * Hiding boots, because on line 45, I'm moving new boots behind left edge of div, to get smooth slider effect
+	// * Temporarily hide boots before repositioning off-screen for smooth slide-in
 	bootsImg.classList.add('hidden');
 	await sleep(500);
-	bootsImg.style.transform = `translateX(${BOOTS_START_DISTANCE})`;
+	bootsImg.style.transform = `translateX(${BOOTS_ENTRY_POSITION})`;
 	await sleep(500);
 	bootsImg.classList.remove('hidden');
 	bootsImg.style.transform = '';
