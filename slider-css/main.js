@@ -31,7 +31,7 @@ window.addEventListener('load', () => {
 		if (isAnimating) return;
 		isAnimating = true;
 
-		const isNextButtonPressed = [...ev.target.classList].includes('right');
+		const isNextButtonPressed = [...ev.target.classList].includes('right-chveron');
 
 		if (isNextButtonPressed) {
 			await nextSlide();

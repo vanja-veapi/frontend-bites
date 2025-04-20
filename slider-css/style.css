@@ -84,12 +84,12 @@
 	z-index: 100;
 }
 
-.left {
+.left-chevron {
 	left: 1rem;
 	top: 50%;
 }
 
-.right {
+.right-chevron {
 	right: 1rem;
 	top: 50%;
 }
@@ -99,12 +99,12 @@
 		width: 320px;
 	}
 
-	.right {
+	.right-chevron {
 		top: unset;
 		bottom: 3rem;
 		right: 30%;
 	}
-	.left {
+	.left-chevron {
 		top: unset;
 		bottom: 3rem;
 		left: 30%;
