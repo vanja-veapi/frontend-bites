@@ -27,32 +27,54 @@ window.addEventListener('load', () => {
 	const chevrons = document.querySelectorAll('.chevron');
 
 	let activeSlide = 0;
+	let isAnimating = false;
 
-	const handleClick = (ev) => {
+	const handleClick = async (ev) => {
+		debugger;
+		if (isAnimating) return;
+		isAnimating = true;
+
 		const isNextButtonPressed = [...ev.target.classList].includes('right');
 
 		if (isNextButtonPressed) {
-			nextSlide();
-			return;
+			await nextSlide();
+		} else {
+			await previousSlide();
 		}
 
-		previousSlide();
+		isAnimating = false;
 	};
 
-	const nextSlide = () => {
-		changeLogo(FOOTBALL_BOOTS[activeSlide]);
-		changeBoots(FOOTBALL_BOOTS[activeSlide]);
-		changeText(FOOTBALL_BOOTS[activeSlide]);
+	const nextSlide = async () => {
+		await Promise.all([
+			changeLogo(FOOTBALL_BOOTS[activeSlide]),
+			changeBoots(FOOTBALL_BOOTS[activeSlide]),
+			changeText(FOOTBALL_BOOTS[activeSlide]),
+		]);
 
 		if (activeSlide === FOOTBALL_BOOTS.length - 1) {
 			activeSlide = 0;
-			return;
+		} else {
+			activeSlide++;
 		}
-
-		activeSlide++;
 	};
 
-	chevrons.forEach((chevron) => chevron.addEventListener('click', debounce(handleClick, 1000)));
+	function a() {}
+	const previousSlide = async () => {
+		if (activeSlide === 0) {
+			activeSlide = FOOTBALL_BOOTS.length - 1;
+		} else {
+			activeSlide--;
+		}
+
+		await Promise.all([
+			changeLogo(FOOTBALL_BOOTS[activeSlide]),
+			changeBoots(FOOTBALL_BOOTS[activeSlide]),
+			changeText(FOOTBALL_BOOTS[activeSlide]),
+		]);
+	};
+
+	chevrons.forEach((chevron) => chevron.addEventListener('click', handleClick));
 });
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -103,5 +125,3 @@ const changeText = async (activeSlide) => {
 	await sleep(100);
 	bootsModel.classList.remove('opacity-0');
 };
-
-const previousSlide = () => console.log('Previous slide...');
