@@ -1,33 +1,74 @@
+const IMAGE_PATH = 'images';
+const FOOTBALL_BOOTS = [
+	{
+		fileName: 'Adidas_Logo.png',
+		footballBoots: 'football-boots.png',
+		modelName: 'Adidas kopačke 123',
+	},
+	{
+		fileName: 'nike_logo.png',
+		footballBoots: 'nike-boots.png',
+		modelName: 'Nike faktoriel kope',
+	},
+];
+
+function debounce(func, delay) {
+	let timeoutId;
+	return (...args) => {
+		if (timeoutId) return; // blokiraj nove klikove dok traje timeout
+		func(...args);
+		timeoutId = setTimeout(() => {
+			timeoutId = null;
+		}, delay);
+	};
+}
+
 window.addEventListener('load', () => {
 	const chevrons = document.querySelectorAll('.chevron');
 
-	chevrons.forEach((chevron) => chevron.addEventListener('click', handleClick));
+	let activeSlide = 0;
+
+	const handleClick = (ev) => {
+		const isNextButtonPressed = [...ev.target.classList].includes('right');
+
+		if (isNextButtonPressed) {
+			nextSlide();
+			return;
+		}
+
+		previousSlide();
+	};
+
+	const nextSlide = () => {
+		changeLogo(FOOTBALL_BOOTS[activeSlide]);
+		changeBoots(FOOTBALL_BOOTS[activeSlide]);
+		changeText(FOOTBALL_BOOTS[activeSlide]);
+
+		if (activeSlide === FOOTBALL_BOOTS.length - 1) {
+			activeSlide = 0;
+			return;
+		}
+
+		activeSlide++;
+	};
+
+	chevrons.forEach((chevron) => chevron.addEventListener('click', debounce(handleClick, 1000)));
 });
-
-const handleClick = (ev) => {
-	const isNextButtonPressed = [...ev.target.classList].includes('right');
-
-	if (isNextButtonPressed) {
-		nextSlide();
-		return;
-	}
-
-	previousSlide();
-};
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const changeLogo = async () => {
+const LOGO_EXIT_POSITION = '-164px';
+const changeLogo = async (activeSlide) => {
 	const logo = document.querySelector('.logo');
 	if (!logo) throw new Error('Logo not found');
 
 	const logoImg = logo.getElementsByTagName('img')[0];
 	if (!logoImg) return;
 
-	logo.style.transform = 'translateY(-164px)';
+	logo.style.transform = `translateY(${LOGO_EXIT_POSITION})`;
 
 	await sleep(400);
-	logoImg.src = `images/test-logo.png`;
+	logoImg.src = `${IMAGE_PATH}/${activeSlide.fileName}`;
 
 	await sleep(800);
 	logo.style.transform = '';
@@ -36,7 +77,7 @@ const changeLogo = async () => {
 const BOOTS_ENTRY_POSITION = '-800px';
 const BOOTS_EXIT_POSITION = '800px';
 
-const changeBoots = async () => {
+const changeBoots = async (activeSlide) => {
 	const bootsImg = document.querySelector('.boots img');
 	if (!bootsImg) throw new Error('Boots not found');
 
@@ -47,25 +88,20 @@ const changeBoots = async () => {
 	await sleep(500);
 	bootsImg.style.transform = `translateX(${BOOTS_ENTRY_POSITION})`;
 	await sleep(500);
+	bootsImg.src = `${IMAGE_PATH}/${activeSlide.footballBoots}`;
 	bootsImg.classList.remove('hidden');
 	bootsImg.style.transform = '';
 };
 
-const changeText = async () => {
+const changeText = async (activeSlide) => {
 	const bootsModel = document.querySelector('.hero h1');
 	if (!bootsModel) throw new Error('Text not found');
 
 	bootsModel.classList.add('opacity-0');
 	await sleep(800);
-	bootsModel.textContent = 'Nove tike bla bla';
+	bootsModel.textContent = activeSlide.modelName;
 	await sleep(100);
 	bootsModel.classList.remove('opacity-0');
-};
-
-const nextSlide = () => {
-	changeLogo();
-	changeBoots();
-	changeText();
 };
 
 const previousSlide = () => console.log('Previous slide...');
