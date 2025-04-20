@@ -15,17 +15,6 @@ const FOOTBALL_BOOTS = [
 // This value should be the same as it's in CSS file
 const ANIMATION_DURATION = 500;
 
-function debounce(func, delay) {
-	let timeoutId;
-	return (...args) => {
-		if (timeoutId) return; // blokiraj nove klikove dok traje timeout
-		func(...args);
-		timeoutId = setTimeout(() => {
-			timeoutId = null;
-		}, delay);
-	};
-}
-
 window.addEventListener('load', () => {
 	const chevrons = document.querySelectorAll('.chevron');
 
@@ -33,7 +22,6 @@ window.addEventListener('load', () => {
 	let isAnimating = false;
 
 	const handleClick = async (ev) => {
-		debugger;
 		if (isAnimating) return;
 		isAnimating = true;
 
@@ -62,7 +50,6 @@ window.addEventListener('load', () => {
 		}
 	};
 
-	function a() {}
 	const previousSlide = async () => {
 		if (activeSlide === 0) {
 			activeSlide = FOOTBALL_BOOTS.length - 1;
