@@ -31,16 +31,16 @@ const changeLogo = async () => {
 };
 
 const changeBoots = async () => {
-	const boots = document.querySelector('.boots img');
+	const bootsImg = document.querySelector('.boots img');
 
-	boots.style.transform = 'translateX(800px)';
+	bootsImg.style.transform = 'translateX(800px)';
 
-	boots.classList.add('hidden');
+	bootsImg.classList.add('hidden');
 	await sleep(500);
-	boots.style.transform = 'translateX(-800px)';
+	bootsImg.style.transform = 'translateX(-800px)';
 	await sleep(500);
-	boots.classList.remove('hidden');
-	boots.style.transform = 'translateX(0)';
+	bootsImg.classList.remove('hidden');
+	bootsImg.style.transform = '';
 };
 
 const nextSlide = () => {
