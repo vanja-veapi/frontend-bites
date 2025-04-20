@@ -30,9 +30,23 @@ const changeLogo = async () => {
 	logo.style.transform = '';
 };
 
+const changeBoots = async () => {
+	const boots = document.querySelector('.boots img');
+
+	boots.style.transform = 'translateX(800px)';
+
+	boots.classList.add('hidden');
+	await sleep(500);
+	boots.style.transform = 'translateX(-800px)';
+	await sleep(500);
+	boots.classList.remove('hidden');
+	boots.style.transform = 'translateX(0)';
+};
+
 const nextSlide = () => {
 	console.log('Next slide...');
 	changeLogo();
+	changeBoots();
 };
 
 const previousSlide = () => console.log('Previous slide...');
