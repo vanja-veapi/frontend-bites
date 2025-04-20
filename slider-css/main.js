@@ -12,6 +12,9 @@ const FOOTBALL_BOOTS = [
 	},
 ];
 
+// This value should be the same as it's in CSS file
+const ANIMATION_DURATION = 500;
+
 function debounce(func, delay) {
 	let timeoutId;
 	return (...args) => {
@@ -89,10 +92,10 @@ const changeLogo = async (activeSlide) => {
 
 	logo.style.transform = `translateY(${LOGO_EXIT_POSITION})`;
 
-	await sleep(500);
+	await sleep(ANIMATION_DURATION);
 	logoImg.src = `${IMAGE_PATH}/${activeSlide.fileName}`;
 
-	await sleep(500);
+	await sleep(ANIMATION_DURATION);
 	logo.style.transform = '';
 };
 
@@ -107,9 +110,9 @@ const changeBoots = async (activeSlide) => {
 
 	// * Temporarily hide boots before repositioning off-screen for smooth slide-in
 	bootsImg.classList.add('hidden');
-	await sleep(500);
+	await sleep(ANIMATION_DURATION);
 	bootsImg.style.transform = `translateX(${BOOTS_ENTRY_POSITION})`;
-	await sleep(500);
+	await sleep(ANIMATION_DURATION);
 	bootsImg.src = `${IMAGE_PATH}/${activeSlide.footballBoots}`;
 	bootsImg.classList.remove('hidden');
 	bootsImg.style.transform = '';
@@ -120,8 +123,8 @@ const changeText = async (activeSlide) => {
 	if (!bootsModel) throw new Error('Text not found');
 
 	bootsModel.classList.add('opacity-0');
-	await sleep(500);
+	await sleep(ANIMATION_DURATION);
 	bootsModel.textContent = activeSlide.modelName;
-	await sleep(500);
+	await sleep(ANIMATION_DURATION);
 	bootsModel.classList.remove('opacity-0');
 };
