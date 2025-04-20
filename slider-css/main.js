@@ -1,4 +1,3 @@
-const IMAGE_PATH = 'images';
 const FOOTBALL_BOOTS = [
 	{
 		fileName: 'Adidas_Logo.png',
@@ -12,8 +11,14 @@ const FOOTBALL_BOOTS = [
 	},
 ];
 
-// This value should be the same as it's in CSS file
-const ANIMATION_DURATION = 500;
+const CONFIG = {
+	// This value should be the same as it's in CSS file
+	ANIMATION_DURATION: 500,
+	LOGO_EXIT_POSITION: '-164px',
+	BOOTS_ENTRY_POSITION: '-800px',
+	BOOTS_EXIT_POSITION: '800px',
+	IMAGE_PATH: 'images',
+};
 
 window.addEventListener('load', () => {
 	const chevrons = document.querySelectorAll('.chevron');
@@ -71,7 +76,6 @@ const getPreviousSlideIndex = (currentIndex) => {
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const LOGO_EXIT_POSITION = '-164px';
 const changeLogo = async (activeSlide) => {
 	const logo = document.querySelector('.logo');
 	if (!logo) throw new Error('Logo not found');
@@ -79,30 +83,27 @@ const changeLogo = async (activeSlide) => {
 	const logoImg = logo.getElementsByTagName('img')[0];
 	if (!logoImg) return;
 
-	logo.style.transform = `translateY(${LOGO_EXIT_POSITION})`;
+	logo.style.transform = `translateY(${CONFIG.LOGO_EXIT_POSITION})`;
 
-	await sleep(ANIMATION_DURATION);
-	logoImg.src = `${IMAGE_PATH}/${activeSlide.fileName}`;
+	await sleep(CONFIG.ANIMATION_DURATION);
+	logoImg.src = `${CONFIG.IMAGE_PATH}/${activeSlide.fileName}`;
 
-	await sleep(ANIMATION_DURATION);
+	await sleep(CONFIG.ANIMATION_DURATION);
 	logo.style.transform = '';
 };
-
-const BOOTS_ENTRY_POSITION = '-800px';
-const BOOTS_EXIT_POSITION = '800px';
 
 const changeBoots = async (activeSlide) => {
 	const bootsImg = document.querySelector('.boots img');
 	if (!bootsImg) throw new Error('Boots not found');
 
-	bootsImg.style.transform = `translateX(${BOOTS_EXIT_POSITION})`;
+	bootsImg.style.transform = `translateX(${CONFIG.BOOTS_EXIT_POSITION})`;
 
 	// * Temporarily hide boots before repositioning off-screen for smooth slide-in
 	bootsImg.classList.add('hidden');
-	await sleep(ANIMATION_DURATION);
-	bootsImg.style.transform = `translateX(${BOOTS_ENTRY_POSITION})`;
-	await sleep(ANIMATION_DURATION);
-	bootsImg.src = `${IMAGE_PATH}/${activeSlide.footballBoots}`;
+	await sleep(CONFIG.ANIMATION_DURATION);
+	bootsImg.style.transform = `translateX(${CONFIG.BOOTS_ENTRY_POSITION})`;
+	await sleep(CONFIG.ANIMATION_DURATION);
+	bootsImg.src = `${CONFIG.IMAGE_PATH}/${activeSlide.footballBoots}`;
 	bootsImg.classList.remove('hidden');
 	bootsImg.style.transform = '';
 };
@@ -112,8 +113,8 @@ const changeText = async (activeSlide) => {
 	if (!bootsModel) throw new Error('Text not found');
 
 	bootsModel.classList.add('opacity-0');
-	await sleep(ANIMATION_DURATION);
+	await sleep(CONFIG.ANIMATION_DURATION);
 	bootsModel.textContent = activeSlide.modelName;
-	await sleep(ANIMATION_DURATION);
+	await sleep(CONFIG.ANIMATION_DURATION);
 	bootsModel.classList.remove('opacity-0');
 };
