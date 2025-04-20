@@ -89,10 +89,10 @@ const changeLogo = async (activeSlide) => {
 
 	logo.style.transform = `translateY(${LOGO_EXIT_POSITION})`;
 
-	await sleep(400);
+	await sleep(500);
 	logoImg.src = `${IMAGE_PATH}/${activeSlide.fileName}`;
 
-	await sleep(800);
+	await sleep(500);
 	logo.style.transform = '';
 };
 
@@ -120,8 +120,8 @@ const changeText = async (activeSlide) => {
 	if (!bootsModel) throw new Error('Text not found');
 
 	bootsModel.classList.add('opacity-0');
-	await sleep(800);
+	await sleep(500);
 	bootsModel.textContent = activeSlide.modelName;
-	await sleep(100);
+	await sleep(500);
 	bootsModel.classList.remove('opacity-0');
 };
