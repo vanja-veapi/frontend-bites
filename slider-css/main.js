@@ -51,10 +51,18 @@ const changeBoots = async () => {
 	bootsImg.style.transform = '';
 };
 
-const changeText = () => {};
+const changeText = async () => {
+	const bootsModel = document.querySelector('.hero h1');
+	if (!bootsModel) throw new Error('Text not found');
+
+	bootsModel.classList.add('opacity-0');
+	await sleep(800);
+	bootsModel.textContent = 'Nove tike bla bla';
+	await sleep(100);
+	bootsModel.classList.remove('opacity-0');
+};
 
 const nextSlide = () => {
-	console.log('Next slide...');
 	changeLogo();
 	changeBoots();
 	changeText();

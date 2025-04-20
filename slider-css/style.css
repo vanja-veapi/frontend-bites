@@ -18,6 +18,7 @@
 		overflow: hidden;
 
 		h1 {
+			transition: 0.7s ease-out;
 			color: #fff;
 			text-align: center;
 			font-size: 2rem;
@@ -64,6 +65,9 @@
 
 .hidden {
 	visibility: hidden;
+}
+.opacity-0 {
+	opacity: 0;
 }
 
 .chevron {
