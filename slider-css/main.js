@@ -19,6 +19,7 @@ window.addEventListener('load', () => {
 	const chevrons = document.querySelectorAll('.chevron');
 
 	let activeSlide = 0;
+	let activeBoot = FOOTBALL_BOOTS[activeSlide];
 	let isAnimating = false;
 
 	const handleClick = async (ev) => {
@@ -37,35 +38,36 @@ window.addEventListener('load', () => {
 	};
 
 	const nextSlide = async () => {
-		await Promise.all([
-			changeLogo(FOOTBALL_BOOTS[activeSlide]),
-			changeBoots(FOOTBALL_BOOTS[activeSlide]),
-			changeText(FOOTBALL_BOOTS[activeSlide]),
-		]);
-
-		if (activeSlide === FOOTBALL_BOOTS.length - 1) {
-			activeSlide = 0;
-		} else {
-			activeSlide++;
-		}
+		await renderSlide(activeBoot);
+		activeSlide = getNextSlideIndex(activeSlide);
+		activeBoot = FOOTBALL_BOOTS[activeSlide];
 	};
 
 	const previousSlide = async () => {
-		if (activeSlide === 0) {
-			activeSlide = FOOTBALL_BOOTS.length - 1;
-		} else {
-			activeSlide--;
-		}
-
-		await Promise.all([
-			changeLogo(FOOTBALL_BOOTS[activeSlide]),
-			changeBoots(FOOTBALL_BOOTS[activeSlide]),
-			changeText(FOOTBALL_BOOTS[activeSlide]),
-		]);
+		await renderSlide(activeBoot);
+		activeSlide = getPreviousSlideIndex(activeSlide);
+		activeBoot = FOOTBALL_BOOTS[activeSlide];
 	};
 
 	chevrons.forEach((chevron) => chevron.addEventListener('click', handleClick));
 });
+
+const renderSlide = async (boot) => {
+	try {
+		// Change logo, boots and text concurrently
+		await Promise.all([changeLogo(boot), changeBoots(boot), changeText(boot)]);
+	} catch (error) {
+		console.error('Error rendering slide:', error);
+	}
+};
+
+const getNextSlideIndex = (currentIndex) => {
+	return currentIndex === FOOTBALL_BOOTS.length - 1 ? 0 : currentIndex + 1;
+};
+
+const getPreviousSlideIndex = (currentIndex) => {
+	return currentIndex === 0 ? FOOTBALL_BOOTS.length - 1 : currentIndex - 1;
+};
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
