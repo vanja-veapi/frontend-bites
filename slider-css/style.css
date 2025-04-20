@@ -39,7 +39,6 @@
 		transition: 0.5s;
 		margin-top: 1rem;
 
-		left: 50%;
 		top: 0;
 	}
 }
@@ -81,6 +80,8 @@
 	&:hover {
 		background-color: tomato;
 	}
+
+	z-index: 100;
 }
 
 .left {
@@ -91,4 +92,21 @@
 .right {
 	right: 1rem;
 	top: 50%;
+}
+
+@media screen and (max-width: 768px) {
+	.boots img {
+		width: 320px;
+	}
+
+	.right {
+		top: unset;
+		bottom: 3rem;
+		right: 30%;
+	}
+	.left {
+		top: unset;
+		bottom: 3rem;
+		left: 30%;
+	}
 }
