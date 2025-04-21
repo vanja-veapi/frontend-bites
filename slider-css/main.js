@@ -20,12 +20,45 @@ const CONFIG = {
 	IMAGE_PATH: 'images',
 };
 
+const KEYBOARD_KEYS = {
+	left: 'ArrowLeft',
+	right: 'ArrowRight',
+};
+
+let activeSlide = 0;
+let activeBoot = FOOTBALL_BOOTS[activeSlide];
+let isAnimating = false;
+
+const nextSlide = async () => {
+	await renderSlide(activeBoot);
+	activeSlide = getNextSlideIndex(activeSlide);
+	activeBoot = FOOTBALL_BOOTS[activeSlide];
+};
+
+const previousSlide = async () => {
+	await renderSlide(activeBoot);
+	activeSlide = getPreviousSlideIndex(activeSlide);
+	activeBoot = FOOTBALL_BOOTS[activeSlide];
+};
+
+window.addEventListener('keydown', async (ev) => {
+	if (isAnimating) return;
+
+	isAnimating = true;
+
+	if (ev.key === KEYBOARD_KEYS.right) {
+		await nextSlide();
+	}
+
+	if (ev.key === KEYBOARD_KEYS.left) {
+		await previousSlide();
+	}
+
+	isAnimating = false;
+});
+
 window.addEventListener('load', () => {
 	const chevrons = document.querySelectorAll('.chevron');
-
-	let activeSlide = 0;
-	let activeBoot = FOOTBALL_BOOTS[activeSlide];
-	let isAnimating = false;
 
 	const handleClick = async (ev) => {
 		if (isAnimating) return;
@@ -40,18 +73,6 @@ window.addEventListener('load', () => {
 		}
 
 		isAnimating = false;
-	};
-
-	const nextSlide = async () => {
-		await renderSlide(activeBoot);
-		activeSlide = getNextSlideIndex(activeSlide);
-		activeBoot = FOOTBALL_BOOTS[activeSlide];
-	};
-
-	const previousSlide = async () => {
-		await renderSlide(activeBoot);
-		activeSlide = getPreviousSlideIndex(activeSlide);
-		activeBoot = FOOTBALL_BOOTS[activeSlide];
 	};
 
 	chevrons.forEach((chevron) => chevron.addEventListener('click', handleClick));
