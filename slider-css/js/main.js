@@ -1,4 +1,5 @@
 import { CONFIG, KEYBOARD_KEYS } from './config.js';
+import { sleep } from './utils/sleep.js';
 
 const fetchJSON = async (url) => {
 	try {
@@ -84,8 +85,6 @@ const getNextSlideIndex = (currentIndex) => {
 const getPreviousSlideIndex = (currentIndex) => {
 	return currentIndex === 0 ? FOOTBALL_BOOTS.length - 1 : currentIndex - 1;
 };
-
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const changeLogo = async (activeSlide) => {
 	const logo = document.querySelector('.logo');
