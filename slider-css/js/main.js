@@ -1,13 +1,18 @@
 import { CONFIG, KEYBOARD_KEYS } from './config.js';
 
-const fetchJSON = async (url) =>
-	await fetch(url)
-		.then((res) => {
-			if (!res.ok) return [];
+const fetchJSON = async (url) => {
+	try {
+		const res = await fetch(url);
 
-			return res.json();
-		})
-		.catch((err) => console.error('Desila se greska prijatelju!', err));
+		if (!res.ok) return [];
+
+		const data = await res.json();
+		return data;
+	} catch (err) {
+		console.error('Desila se greska prijatelju!', err);
+		return []; // fallback da aplikacija ne puca
+	}
+};
 const FOOTBALL_BOOTS = await fetchJSON('../data.json');
 
 let activeSlide = 0;
