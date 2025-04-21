@@ -6,3 +6,8 @@ export const CONFIG = {
 	BOOTS_EXIT_POSITION: '800px',
 	IMAGE_PATH: 'images',
 };
+
+export const KEYBOARD_KEYS = {
+	left: 'ArrowLeft',
+	right: 'ArrowRight',
+};

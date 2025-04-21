@@ -1,4 +1,4 @@
-import { CONFIG } from './config.js';
+import { CONFIG, KEYBOARD_KEYS } from './config.js';
 
 const FOOTBALL_BOOTS = [
 	{
@@ -12,11 +12,6 @@ const FOOTBALL_BOOTS = [
 		modelName: 'Nike faktoriel kope',
 	},
 ];
-
-const KEYBOARD_KEYS = {
-	left: 'ArrowLeft',
-	right: 'ArrowRight',
-};
 
 let activeSlide = 0;
 let activeBoot = FOOTBALL_BOOTS[activeSlide];
