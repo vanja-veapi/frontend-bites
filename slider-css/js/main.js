@@ -1,3 +1,5 @@
+import { CONFIG } from './config.js';
+
 const FOOTBALL_BOOTS = [
 	{
 		fileName: 'Adidas_Logo.png',
@@ -10,15 +12,6 @@ const FOOTBALL_BOOTS = [
 		modelName: 'Nike faktoriel kope',
 	},
 ];
-
-const CONFIG = {
-	// This value should be the same as it's in CSS file
-	ANIMATION_DURATION: 500,
-	LOGO_EXIT_POSITION: '-164px',
-	BOOTS_ENTRY_POSITION: '-800px',
-	BOOTS_EXIT_POSITION: '800px',
-	IMAGE_PATH: 'images',
-};
 
 const KEYBOARD_KEYS = {
 	left: 'ArrowLeft',
