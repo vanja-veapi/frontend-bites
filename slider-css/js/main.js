@@ -1,17 +1,14 @@
 import { CONFIG, KEYBOARD_KEYS } from './config.js';
 
-const FOOTBALL_BOOTS = [
-	{
-		fileName: 'Adidas_Logo.png',
-		footballBoots: 'football-boots.png',
-		modelName: 'Adidas kopačke 123',
-	},
-	{
-		fileName: 'nike_logo.png',
-		footballBoots: 'nike-boots.png',
-		modelName: 'Nike faktoriel kope',
-	},
-];
+const fetchJSON = async (url) =>
+	await fetch(url)
+		.then((res) => {
+			if (!res.ok) return [];
+
+			return res.json();
+		})
+		.catch((err) => console.error('Desila se greska prijatelju!', err));
+const FOOTBALL_BOOTS = await fetchJSON('../data.json');
 
 let activeSlide = 0;
 let activeBoot = FOOTBALL_BOOTS[activeSlide];
