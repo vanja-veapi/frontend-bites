@@ -1,5 +1,6 @@
 import { fetchJSON } from './api.js';
 import { CONFIG, KEYBOARD_KEYS } from './config.js';
+import { removeLoader } from './loader.js';
 import { sleep } from './utils/sleep.js';
 
 window.addEventListener('load', async () => {
@@ -8,11 +9,7 @@ window.addEventListener('load', async () => {
 	let activeBoot = FOOTBALL_BOOTS[activeSlide];
 	let isAnimating = false;
 
-	const loading = document.querySelector('#loading');
-	if (loading) {
-		setTimeout(() => loading.classList.add('fade-out'), 500);
-		setTimeout(() => loading.remove(), 2000);
-	}
+	removeLoader();
 
 	const getNextSlideIndex = (currentIndex) =>
 		currentIndex === FOOTBALL_BOOTS.length - 1 ? 0 : currentIndex + 1;
