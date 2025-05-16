@@ -10,5 +10,11 @@
 		"footballBoots": "nike-boots.png",
 		"modelName": "Nike faktoriel kope",
 		"background": "football-player-nike.jpg"
+	},
+	{
+		"fileName": "puma-logo.png",
+		"footballBoots": "puma-boots.png",
+		"modelName": "Puma kopacke najbolje",
+		"background": "football-player-puma.jpg"
 	}
 ]
