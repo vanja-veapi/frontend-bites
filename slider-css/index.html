@@ -4,16 +4,30 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>CSS Slider</title>
+		<!-- FaFa -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+		/>
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
 		<section class="hero relative">
-			<div class="chevron right-chevron absolute"></div>
-			<div class="chevron left-chevron absolute"></div>
+			<div id="loading" class="loader-container absolute">
+				<div class="loader relative"></div>
+			</div>
+			<div class="chevron right-chevron absolute" data-slide="right">
+				<i class="fa-solid fa-chevron-right"></i>
+			</div>
+			<div class="chevron left-chevron absolute" data-slide="left">
+				<i class="fa-solid fa-chevron-left"></i>
+			</div>
 
-			<div class="container">
+			<div class="container relative">
 				<div class="logo absolute">
-					<a href="adidas"><img src="./images/Adidas_Logo.png" alt="logo" width="128" /></a>
+					<a id="brand-logo" href="adidas">
+						<img src="./images/Adidas_Logo.png" alt="logo" width="128" />
+					</a>
 				</div>
 				<div class="boots">
 					<a href="putanja-do-modela" target="_blank">
@@ -24,6 +38,6 @@
 			</div>
 		</section>
 
-		<script type="module" src="./js/main.js"></script>
+		<script type="module" src="./js/main.js" defer></script>
 	</body>
 </html>

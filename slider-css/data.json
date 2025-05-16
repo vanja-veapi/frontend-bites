@@ -2,11 +2,13 @@
 	{
 		"fileName": "Adidas_Logo.png",
 		"footballBoots": "football-boots.png",
-		"modelName": "Adidas kopačke 123"
+		"modelName": "Adidas kopačke 123",
+		"background": "football-player.jpg"
 	},
 	{
 		"fileName": "nike_logo.png",
 		"footballBoots": "nike-boots.png",
-		"modelName": "Nike faktoriel kope"
+		"modelName": "Nike faktoriel kope",
+		"background": "football-player-nike.jpg"
 	}
 ]
