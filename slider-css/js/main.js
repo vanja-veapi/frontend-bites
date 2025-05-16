@@ -1,19 +1,8 @@
+import { fetchJSON } from './api.js';
 import { CONFIG, KEYBOARD_KEYS } from './config.js';
 import { sleep } from './utils/sleep.js';
 
 window.addEventListener('load', async () => {
-	const fetchJSON = async (url) => {
-		try {
-			const res = await fetch(url);
-			if (!res.ok) return [];
-			const data = await res.json();
-			return data;
-		} catch (err) {
-			console.error('Desila se greska prijatelju!', err);
-			return [];
-		}
-	};
-
 	const FOOTBALL_BOOTS = await fetchJSON('../data.json');
 	let activeSlide = 0;
 	let activeBoot = FOOTBALL_BOOTS[activeSlide];
