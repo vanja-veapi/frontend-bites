@@ -43,7 +43,7 @@ export const changeText = async (activeSlide) => {
 	bootsModel.classList.remove('opacity-0');
 };
 
-const BASE_PATH = '../images';
+const BASE_PATH = './images';
 export const changeBackground = (boot) => {
 	const hero = document.querySelector('.hero');
 	hero.style.opacity = 0;
