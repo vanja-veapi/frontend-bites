@@ -4,7 +4,7 @@ import { KEYBOARD_KEYS } from './config.js';
 import { removeLoader } from './loader.js';
 
 window.addEventListener('load', async () => {
-	const FOOTBALL_BOOTS = await fetchJSON('../data.json');
+	const FOOTBALL_BOOTS = await fetchJSON('./data.json');
 	let activeSlide = 0;
 	let activeBoot = FOOTBALL_BOOTS[activeSlide];
 	let isAnimating = false;
