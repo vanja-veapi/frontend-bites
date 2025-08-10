@@ -7,3 +7,6 @@
 3. Vise instanci karti cinice jedan spil
     - Spill moze da se mesa (shuffle)
     - Vuce jedna karta (po defaultu sa vrha, ali ostavicu opciju da moze i odozdo)
+
+
+- Prebaciti u typescript
