@@ -1,37 +1,44 @@
-import React from 'react';
+import styled, { css } from 'styled-components';
 
-import './button.css';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
+import { theme } from '../../config';
 
-export interface ButtonProps {
-  /** Is this the principal call to action on the page? */
-  primary?: boolean;
-  /** What background color to use */
-  backgroundColor?: string;
-  /** How large should the button be? */
-  size?: 'small' | 'medium' | 'large';
-  /** Button contents */
-  label: string;
-  /** Optional click handler */
-  onClick?: () => void;
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+	children: ReactNode;
 }
 
 /** Primary UI component for user interaction */
-export const Button = ({
-  primary = false,
-  size = 'medium',
-  backgroundColor,
-  label,
-  ...props
-}: ButtonProps) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
-  return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={{ backgroundColor }}
-      {...props}
-    >
-      {label}
-    </button>
-  );
+export const Button = ({ children = 'MAJMUNCINO', className, ...props }: ButtonProps) => {
+	return (
+		<ButtonUI {...props} type="button" className={className}>
+			{children}
+		</ButtonUI>
+	);
 };
+
+const buttonBaseCSS = css`
+	padding: 0.5rem 2rem;
+	border: unset;
+	cursor: pointer;
+
+	border-radius: 0.25rem;
+`;
+
+const ButtonUI = styled.button<{ className?: string; variant?: keyof typeof theme.palette }>`
+	${buttonBaseCSS}
+
+	${({ variant = 'primary' }) => css`
+		color: ${theme.palette[variant].contrastText};
+
+		background-color: ${theme.palette[variant].main};
+
+		&:not(:disabled) {
+			&:hover {
+				background-color: ${theme.palette[variant].hover};
+			}
+			&:active {
+				background-color: ${theme.palette[variant].pressed};
+			}
+		}
+	`}
+`;
