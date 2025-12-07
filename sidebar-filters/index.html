@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sidebar filters</title>
+	</head>
+	<body>
+		<aside>
+			<ul id="sidebar">
+				<li>
+					<label>Adresa</label>
+					<input id="address" type="text" class="address" data-filter="address" />
+				</li>
+				<li>
+					<label>Prikazi promovisane oglase</label>
+					<br />
+					<input
+						type="radio"
+						id="yes"
+						class="isAdPromoted"
+						data-filter="isAdPromoted"
+						name="isAdPromoted"
+						value="yes"
+					/>
+					<label for="yes">DA</label>
+
+					<input
+						type="radio"
+						id="no"
+						class="isAdPromoted"
+						data-filter="isAdPromoted"
+						name="isAdPromoted"
+						value="no"
+					/>
+					<label for="no">NE</label>
+				</li>
+				<li>
+					<label>Oprema za kola</label>
+					<br />
+
+					<div>
+						<label for="radio">Radio</label>
+						<input
+							type="checkbox"
+							class="carAccessories"
+							data-filter="carAccessories"
+							name="radio"
+							id="radio"
+							value="1"
+						/>
+					</div>
+					<div>
+						<label for="bluetooth">Bluetooth</label>
+						<input
+							type="checkbox"
+							class="carAccessories"
+							name="bluetooth"
+							id="bluetooth"
+							value="2"
+							data-filter="carAccessories"
+						/>
+					</div>
+					<div>
+						<label for="panorama-roof">Panorama</label>
+						<input
+							type="checkbox"
+							class="carAccessories"
+							name="panorama-roof"
+							id="panorama-roof"
+							value="5"
+							data-filter="carAccessories"
+						/>
+					</div>
+					<div>
+						<label for="tempomat">Tempomat</label>
+						<input
+							type="checkbox"
+							class="carAccessories"
+							name="tempomat"
+							id="tempomat"
+							value="9"
+							data-filter="carAccessories"
+						/>
+					</div>
+				</li>
+			</ul>
+		</aside>
+		<script src="./main.js" type="module"></script>
+	</body>
+</html>
