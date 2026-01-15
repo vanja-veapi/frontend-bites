@@ -1,5 +1,3 @@
-import { generateInputTextField } from './generateInputTextField.js';
-
 export const generateListItem = ({ label, fn }) => {
 	const list = document.createElement('li');
 

@@ -5,10 +5,12 @@ export const FILTERS = [
 	// type text filteri
 	{
 		label: 'Adresa test',
+		type: 'text',
 		fn: () => generateInputTextField('address'),
 	},
 	{
 		label: 'Postanski broj',
+		type: 'text',
 		fn: () => generateInputTextField('zip'),
 	},
 	// radio filteri

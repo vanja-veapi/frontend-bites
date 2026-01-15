@@ -59,9 +59,11 @@ const convertFiltersToJSON = (queryParams) => {
 
 	return jsonObj;
 };
+
 window.addEventListener('load', () => {
 	// Dinamicko dodavanje filtera
 	const sidebar = document.querySelector('#sidebar');
+	sidebar.addEventListener('');
 	FILTERS.forEach(({ label, fn }) => sidebar.appendChild(generateListItem({ label, fn })));
 
 	// DOLE RADI
@@ -72,7 +74,6 @@ window.addEventListener('load', () => {
 	fetch('www.google.com', { method: 'POST', body: JSON.stringify(filtersObject) });
 
 	const address = document.querySelector('.address');
-	console.log({ address });
 	const promotionOptions = document.querySelectorAll('.isAdPromoted');
 	const carAccessories = document.querySelectorAll('.carAccessories');
 
@@ -83,7 +84,8 @@ window.addEventListener('load', () => {
 	});
 
 	promotionOptions.forEach((ad) =>
-		ad.addEventListener('change', (ev) => {
+		ad.addEventListener('input', (ev) => {
+			console.log('INPUT RADI i za radio buttone, vrv i za cb');
 			setQueryParams(ev);
 		})
 	);
