@@ -6,6 +6,3 @@
 
 const withoutDuplicates = (array: number[]) =>
 	array.filter((item) => array.indexOf(item) === array.lastIndexOf(item));
-
-const getElementAtIndex = ({ array, index }: { array: any[]; index: number }) =>
-	array[index];
