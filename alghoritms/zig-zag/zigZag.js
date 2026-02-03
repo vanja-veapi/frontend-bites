@@ -14,6 +14,8 @@ function zigZag(inputArray) {
 		}
 	};
 
+	// Dosao sam na ideju da napravim for petlju i da u njoj u prvoj iteraciji pushujem prvi i poslednji element niza
+	// U drugoj iteraciji pushujem drugi i pretposlednji element niza itd..
 	for (let i = 0; i <= lastElement; i++) {
 		pushElements(i);
 		lastElement--;
