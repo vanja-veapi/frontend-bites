@@ -1,4 +1,3 @@
-// outcome = result
 const ROWS = 3;
 const COLS = 5;
 
@@ -18,6 +17,7 @@ const getSlotSymbolIndex = () =>
 // Koraci
 
 // 1. Generisati ishod ruke/spina
+// outcome = result
 const generateOutcome = () => {
 	const outcome = [];
 	for (let i = 0; i < ROWS; i++) {
@@ -25,8 +25,6 @@ const generateOutcome = () => {
 		for (let j = 0; j < COLS; j++) {
 			const slotSymbolIndex = getSlotSymbolIndex();
 
-			const isOne = Math.round(Math.random()) === 1;
-			// col.push(isOne ? 'X' : 0);
 			col.push(SLOT_SYMBOLS[slotSymbolIndex]);
 		}
 		outcome.push(col);
@@ -69,7 +67,7 @@ for (const payLine of payLines) {
 		if (symbol === firstSymbol) {
 			matchCount++;
 		} else {
-			break; // sekvenca je prekinuta
+			break; // Nema više poklapanja, izlazimo iz petlje
 		}
 
 		collectedSymbols.push(symbol);
