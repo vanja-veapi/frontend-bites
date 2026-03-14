@@ -8,6 +8,9 @@ const SLOT_SYMBOLS = {
 	2: 'K',
 	3: 'Q',
 	4: 'J',
+	5: '10',
+	6: '🍍',
+	7: '🍋',
 };
 
 const getSlotSymbolIndex = () =>
