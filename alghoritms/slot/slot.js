@@ -64,12 +64,9 @@ for (const payLine of payLines) {
 		const row = payLine.pattern[col];
 		const symbol = generatedOutcome[row][col];
 
-		if (symbol === firstSymbol) {
-			matchCount++;
-		} else {
-			break; // Nema više poklapanja, izlazimo iz petlje
-		}
+		if (symbol !== firstSymbol) break; // Nema više poklapanja, izlazimo iz petlje
 
+		matchCount++;
 		collectedSymbols.push(symbol);
 	}
 
