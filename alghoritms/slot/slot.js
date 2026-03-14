@@ -53,6 +53,7 @@ const payLines = [
 	{ name: 'slope', pattern: [0, 1, 1, 1, 2] },
 ];
 
+// 4. Prolazak kroz svaku payline i provera da li je dobitna
 for (const payLine of payLines) {
 	const collectedSymbols = [];
 
